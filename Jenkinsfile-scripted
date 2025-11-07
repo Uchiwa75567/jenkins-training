@@ -1,12 +1,20 @@
-node{
-    stage('Paralléle'){
+node {
+    stage('Parallèle') {
         parallel(
-            'A':{sh 'sleep 5 ; echo A ok'},
-            'B':{sh 'sleep 3 ; echo B ok'}
+            'A': {
+                sh 'sleep 5 && echo "A OK"'
+            },
+            'B': {
+                sh 'sleep 3 && echo "B OK"'
+            }
         )
     }
-    stage('Input'){
-        input'Go prod?'
-        echo 'Déployé!'
+
+    stage('Input') {
+        def userInput = input(
+            message: 'Go prod ?',
+            ok: 'Oui, déployer !'
+        )
+        echo "DÉPLOYÉ EN PROD !"
     }
 }
