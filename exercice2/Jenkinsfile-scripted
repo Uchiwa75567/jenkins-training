@@ -1,0 +1,8 @@
+node{
+    def Nom='Ahmed'
+    stages{
+        stage('Salut'){
+            sh "echo Bonjour ${NOM}"
+        }
+    }
+}
