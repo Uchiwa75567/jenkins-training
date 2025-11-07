@@ -1,9 +1,0 @@
-node {
-    stage('Lire') {
-        writeFile file: 'noms.txt', text: 'Ali\nSara\nKarim'
-        def lignes = readFile('noms.txt').split('\n')
-        lignes.each { nom ->
-            echo "Bonjour ${nom.trim()}"
-        }
-    }
-}
