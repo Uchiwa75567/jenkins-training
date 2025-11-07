@@ -1,12 +1,13 @@
-pipeline{
+pipeline {
     agent any
-
-    environment{
-        NOM='Bachir'
+    environment {
+        NOM = 'Ahmed'
     }
-    stages{
-        stage('Salut'){
-            sh 'echo"Bonjour mon nom ${NOM}"'
+    stages {
+        stage('Salut') {
+            steps {
+                sh 'echo "Salut $NOM"'  // ← GUILLEMETS OBLIGATOIRES
+            }
         }
     }
 }
