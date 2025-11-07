@@ -1,17 +1,30 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('Parallele'){
-            stage('stage A'){steps{sh'sleep 5s;echo A ok'}}
-            stage('stage B'){steps{sh'sleep 3s;echo B ok'}}
-            }
-        stage('Déployer'){
-            input{message "Go prod?"}
-            steps{
-                echo'Déployé!'
+
+    stages {
+        stage('Parallèle') {
+            parallel {
+                stage('Tâche A') {
+                    steps {
+                        sh 'sleep 5 && echo "A OK"'
+                    }
+                }
+                stage('Tâche B') {
+                    steps {
+                        sh 'sleep 3 && echo "B OK"'
+                    }
+                }
             }
         }
+
+        stage('Déployer ?') {
+            input {
+                message "Go prod ?"
+                ok "Oui, déployer !"
+            }
+            steps {
+                echo 'DÉPLOYÉ EN PROD !'
+            }
         }
-
-
     }
+}
